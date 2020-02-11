@@ -1,0 +1,54 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@model RenderingModel
+@{
+    Sitecore.Data.Fields.MultilistField selectedItems = Model.Item.Fields["Selected Items"];
+
+    var interval = Model.Item.Fields["Interval"].ToString();
+
+    Sitecore.Data.Fields.CheckboxField keyboardFieldValue = Model.Item.Fields["Keyboard"];
+    var keyboard = keyboardFieldValue.Checked ? true : false;
+
+    var pause = Model.Item.Fields["Pause"].ToString();
+
+    var ride = Model.Item.Fields["Ride"].ToString();
+
+    Sitecore.Data.Fields.CheckboxField wrapFieldValue = Model.Item.Fields["Wrap"];
+    var wrap = wrapFieldValue.Checked ? true : false;
+
+    Sitecore.Data.Items.Item[] items = selectedItems.GetItems();
+}
+<div id="carousel_1" class="carousel slide"
+     data-interval="@interval"
+     data-keyboard="@keyboard"
+     data-pause="@pause"
+     data-ride="@ride"
+     data-wrap="@wrap">
+    <ol class="carousel-indicators">       
+                <li data-target="#carousel_1" data-slide-to="0" class="active"></li>      
+    </ol>
+    <div class="carousel-inner" role="listbox">        
+                <div class="item active">
+                    <div class="jumbotron jumbotron-xl bg-media" style="background-image: url(Images/carousel-skiing.jpg)">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h1>@Html.Sitecore().Field("Title", items[0])</h1>
+                                    <p class="lead">@Html.Sitecore().Field("Subtitle", items[0])</p>
+                                    <a class="btn btn-hollow btn-lg" href="Event-List.html">Read more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>         
+    </div>
+
+    <a class="left carousel-control" href="#carousel_1" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel_1" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>

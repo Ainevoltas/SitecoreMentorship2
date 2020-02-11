@@ -1,0 +1,24 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@model IEnumerable<Sitecore.Data.Items.Item>
+
+
+<div class="navbar-left">
+    <div class="collapse navbar-collapse" id="siteNavbar">
+        <ul class="nav navbar-nav">
+            <li><a class="text-uppercase" href="index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="Event-Sections.html" class="dropdown-toggle text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false">
+                    Events<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    @foreach (var item in Model)
+                    {
+                        <li><a href="@item.Uri.ToUrlString(item.Uri.Path)">@item.DisplayName</a></li>
+                    }                   
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

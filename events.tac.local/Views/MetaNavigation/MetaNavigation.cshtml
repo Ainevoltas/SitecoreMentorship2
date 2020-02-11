@@ -1,0 +1,17 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@model RenderingModel
+@{
+    Sitecore.Data.Fields.MultilistField selectedItems = Model.Item.Fields["Available links"];
+
+    Sitecore.Data.Items.Item[] items = selectedItems.GetItems();
+}
+<ul class="nav nav-stacked">
+    @foreach (var link in items)
+    {
+
+        <li>
+            <a href="@Html.Sitecore().Field("Url", link)" title="@Html.Sitecore().Field("DisplayText", link)"></a>
+        </li>
+    }   
+</ul>
